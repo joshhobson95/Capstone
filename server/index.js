@@ -3,13 +3,20 @@ const cors = require('cors')
 
 const app = express()
 
-app.use(express.json)
+app.use(express.json())
 app.use(cors())
 
 
+//add each function to this destructing
+const { getPokemon, addPokemon, deletePokemon, updateQuantity} = require('./controller')
 
-const{ getPokemon } = require('./controller')
+app.get('/getPokemon', getPokemon);
+app.post('/addPokemon', addPokemon);
+app.delete('/deletePokemon/:id', deletePokemon);
+app.put('/updateQuantity', updateQuantity);
+//adds parameter of id
 
-app.get('/getPokemon', getPokemon)
 
-app.listen(4567, () => console.log('server is running'))
+app.listen(5500, () => console.log('server is running'));
+
+//postman not loading...
