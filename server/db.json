@@ -1,0 +1,15 @@
+[
+{
+    "id": "1",
+    "name": "Bulbasaur",
+    "picture": "asdf.jpg",
+    "quantity": 0
+},
+{
+    "id": "2",
+    "name": "Ivysaur",
+    "picture": "asdf2.jpg",
+    "quantity": 0
+}
+
+]
