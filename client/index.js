@@ -52,7 +52,7 @@ const createPokemonCard = (pokemon) => {
     pokemonCard.classList.add('pokemon-card')
 
     pokemonCard.innerHTML = `
-    <img src=${pokemon.picture} alt='pokemon image'/>
+    <img src=${pokemon.picture} alt='pokemon image' id="${pokemon.id}"/>
     <p>${pokemon.name}</p>
     <p>${pokemon.id}</p>
     <p id "quantity"> Quantity is ${pokemon.quantity}</p>
@@ -71,6 +71,18 @@ pokemoncontainer.appendChild(pokemonCard)
 
 
 const updateQuantity = (id, type) => axios.put(`${baseURL}/updateQuantity/${id}`, {type}).then(updatequantitycb).catch(errCallback)
+
+function colorMe() {
+  
+  var element = document.getElementById(`${pokemon.id}`);
+  element.classList.toggle("grayscale");
+  console.log('click');
+
+}
+
+
+
+
 
 
 
