@@ -14,8 +14,29 @@ const getAllPokemon = () => {
             console.log(err)
         })
 }
+////////////////////////////////// submit handler
+function submitHandler(e) {
+  e.preventDefault()
+  let quantity = document.querySelector('#quantity')
 
 
+  let bodyObj = {
+      
+   
+      quantity: quantity.value,
+     
+  }
+
+  createPokemon(bodyObj)
+
+ 
+  
+  quantity.value = ''
+  
+}
+////////////////////////////// callback
+const updatequantitycb = ({ data: pokemon }) => displayPokemon(pokemon);
+const errCallback = err => console.log(err)
 
 //////////////////////////
 const displayPokemon = (arr) => {
@@ -33,17 +54,34 @@ const createPokemonCard = (pokemon) => {
     pokemonCard.innerHTML = `
     <img src=${pokemon.picture} alt='pokemon image'/>
     <p>${pokemon.name}</p>
+    <p>${pokemon.id}</p>
+    <p id "quantity"> Quantity is ${pokemon.quantity}</p>
+    <button onclick="updateQuantity(${pokemon.id}, 'quantity')">Add One Pokemon to Quantity</button>
 
 
-    <section>
-        <button>Add</button>
-            Quantity: ${pokemon.quantity}
-        <button>Remove</button>
-    </section>
-    <br><br/>
+
+    
+       
     `
 pokemoncontainer.appendChild(pokemonCard)
 }
+
+
+
+
+
+const updateQuantity = (id, type) => axios.put(`${baseURL}/updateQuantity/${id}`, {type}).then(updatequantitycb).catch(errCallback)
+
+
+
+// const updateQuantity = (id, type) => {
+//     axios.put(`${baseURL}/${id}`, {type})
+//         .then((res) => {
+//             showPokemon.innerHTML = `${pokemon.quantity}`
+//             displayPokemon(res.data)
+//         })
+// }
+
 ////////////////////////////////////
 //using template literal and . notation to acess data from db.json to add to each card
 
@@ -56,13 +94,6 @@ pokemoncontainer.appendChild(pokemonCard)
 // </section> */}
 
 
-// const updatePokemon = (id, type) => {
-//     axios.put(`${baseURL}/updateLikes/${id}`, {type})
-//         .then((res) => {
-//             showDrinks.innerHTML = ''
-//             displayDrinks(res.data)
-//         })
-// }
 
 
 

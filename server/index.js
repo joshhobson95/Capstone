@@ -13,10 +13,8 @@ const { getPokemon, addPokemon, deletePokemon, updateQuantity} = require('./cont
 app.get('/getPokemon', getPokemon);
 app.post('/addPokemon', addPokemon);
 app.delete('/deletePokemon/:id', deletePokemon);
-app.put('/updateQuantity', updateQuantity);
-//adds parameter of id
+app.put('/updateQuantity/:id', updateQuantity);
+
 
 
 app.listen(5500, () => console.log('server is running'));
-
-//postman not loading...

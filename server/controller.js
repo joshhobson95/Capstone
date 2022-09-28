@@ -2,11 +2,29 @@ let pokemon = require('./db.json')
 let pokemonId = 4
 
 module.exports = {
-
+    
     
     getPokemon: (req, res) => {
         res.status(200).send(pokemon)
     },
+
+    updateQuantity: (req, res) => {
+    
+        const index = pokemon.findIndex(el => el.id === +req.params.id)
+        const {type} = req.body
+    
+        if(type === 'quantity'){
+            pokemon[index].quantity++
+            
+            res.status(200).send(pokemon)
+        } else {
+            res.status(400).send('no')
+        }
+
+    
+    },
+    
+    
 
     addPokemon: (req, res) => {
 
@@ -36,20 +54,5 @@ module.exports = {
         pokemon.splice(index, 1)
 
         res.status(200).send(pokemon)
-    },
-    updateQuantity: (req, res) => {
-
-        const index = pokemon.findIndex(el => el.id === +req.params.id)
-        const {type} = req.body
-
-        if(type === 'add'){
-            pokemon[index].quantity++
-        } else if (type === 'remove') {
-            pokemon[index].quantity--
-        }
-       
-        res.status(200).send(pokemon)
-
     }
-
 }
