@@ -1,5 +1,5 @@
 let pokemon = require('./db.json')
-let pokemonId = 4
+let pokemonId = 135
 
 module.exports = {
     
@@ -32,10 +32,10 @@ module.exports = {
 
 
         let newPokemonObject = {
-            id: pokemonId,
-            name: name,
-            picture: picture,
-            quantity: quantity,
+            name,
+            picture,
+            quantity,
+            id: pokemonId
 
         }
 
@@ -46,13 +46,7 @@ module.exports = {
 
         res.status(200).send(pokemon)
 
-    },
-    deletePokemon: (req, res) => {
-        const index = pokemon.findIndex(el => el.id === +req.params.id)
-        //this looks for the id in the pokemonarray and prepares it for deletion
-
-        pokemon.splice(index, 1)
-
-        res.status(200).send(pokemon)
     }
+
+ 
 }

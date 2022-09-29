@@ -1,9 +1,17 @@
 const baseURL = 'http://localhost:5500'
 
 const showPokemon = document.querySelector('#pokemonDisplay')
+const form = document.querySelector('form')
 
 
+const errCallback = err => console.log(err)
+/////////////////////////////////////////////////////////////////////////
+//post
+const addPokemon = body => axios.post(`${baseURL}/addPokemon`, body).then(displayPokemon).catch(errCallback)
+//put
+const updateQuantity = (id, type) => axios.put(`${baseURL}/updateQuantity/${id}`, {type}).then(displayPokemon).catch(errCallback)
 
+//get
 const getAllPokemon = () => {
     axios.get(`${baseURL}/getPokemon`)
         .then((res) => {
@@ -17,26 +25,32 @@ const getAllPokemon = () => {
 ////////////////////////////////// submit handler
 function submitHandler(e) {
   e.preventDefault()
+
+//   let id = document.querySelector('#id')
+  let name = document.querySelector('#name')
+  let picture = document.querySelector('#picture')
   let quantity = document.querySelector('#quantity')
+
+  
 
 
   let bodyObj = {
-      
-   
-      quantity: quantity.value,
+    //   id: id.value,
+      name: name.value,
+      picture: picture.value,
+      quantity: quantity.value
      
   }
 
-  createPokemon(bodyObj)
+  addPokemon(bodyObj)
 
  
-  
+//   id.value = ''
+  name.value = ''
+  picture.value= ''
   quantity.value = ''
   
 }
-////////////////////////////// callback
-const updatequantitycb = ({ data: pokemon }) => displayPokemon(pokemon);
-const errCallback = err => console.log(err)
 
 //////////////////////////
 const displayPokemon = (arr) => {
@@ -46,13 +60,13 @@ const displayPokemon = (arr) => {
 }
 ////////// creates a card for each pokemon
 
-///actualy function to add the innerHTML
+///actual function to add the innerHTML
 const createPokemonCard = (pokemon) => {
     const pokemonCard = document.createElement('section')
     pokemonCard.classList.add('pokemon-card')
 
     pokemonCard.innerHTML = `
-    <img src=${pokemon.picture} alt='pokemon image' id="${pokemon.id}"/>
+    <img src=${pokemon.picture}  id="${pokemon.id}"/>
     <p>${pokemon.name}</p>
     <p>${pokemon.id}</p>
     <p id "quantity"> Quantity is ${pokemon.quantity}</p>
@@ -67,89 +81,29 @@ pokemoncontainer.appendChild(pokemonCard)
 }
 
 
+form.addEventListener('submit', submitHandler)
 
-
-
-const updateQuantity = (id, type) => axios.put(`${baseURL}/updateQuantity/${id}`, {type}).then(updatequantitycb).catch(errCallback)
-
-function colorMe() {
-  
-  var element = document.getElementById(`${pokemon.id}`);
-  element.classList.toggle("grayscale");
-  console.log('click');
-
-}
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
 
+// function colorMe() {
 
-// const updateQuantity = (id, type) => {
-//     axios.put(`${baseURL}/${id}`, {type})
-//         .then((res) => {
-//             showPokemon.innerHTML = `${pokemon.quantity}`
-//             displayPokemon(res.data)
-//         })
+//   var element = document.getElementById(`${pokemon.id}`);
+//   element.classList.toggle("grayscale");
+//   console.log('click');
+
 // }
-
-////////////////////////////////////
-//using template literal and . notation to acess data from db.json to add to each card
-
-//skipped delete for now
-// section revised with ids
-// {/* <section>
-//             <button onclick="updateDrink(${drink.id}, 'dislike')">Dislike</button>
-//             Popularity: ${drink.likes}
-//             <button onclick="updateDrink(${drink.id}, 'like')">Like</button>
-// </section> */}
+// var pictureClick = document.querySelector(`#${pokemon.id}`);
+// pictureClick.addEventListener("click", colorMe);
 
 
 
 
 
-// <section id="suggestionBox">
-//             <h3>What drink would you like to see?</h3>
-//             <input id='nameInput' placeholder="Name"/>
-//             <input id='flavorInput' placeholder="Flavor"/>
-//             <input id='imageInput' placeholder="Image URL"/>
-//             <button id="addDrink">Submit</button>
-//         </section>
-// const addButton = document.querySelector('#addDrink')
-
-
-
-
-
-
-
-
-
-
-// const addDrink = () => {
-
-//     let nameInput = document.querySelector('#nameInput')
-//     let flavorInput = document.querySelector('#flavorInput')
-//     let imageInput = document.querySelector('#imageInput')
-
-//     let newDrink = {
-//         name: nameInput.value,
-//         flavor: flavorInput.value,
-//         picture: imageInput.value
-//     }
-
-//     axios.post(`${baseURL}/addDrink`, newDrink)
-//     .then((res) => {
-//         showDrinks.innerHTML = ''
-
-//         nameInput.value = ''
-//         flavorInput.value = ''
-//         imageInput.value = ''
-
-//         displayDrinks(res.data)
-//     })
-// }
 
 
 
