@@ -5,6 +5,18 @@ const form = document.querySelector('form')
 
 
 const errCallback = err => console.log(err)
+//////////////////////////////////////////////////////////////////// random bounty
+const randomBountyButton = document.getElementById('randomBounty')
+
+const getBounty = () => {
+  axios.get(`${baseURL}/randomPokemon`)
+  .then(res => {
+    const data = res.data;
+    alert(data);
+});
+};
+randomBountyButton.addEventListener('click', getBounty)
+
 /////////////////////////////////////////////////////////////////////////
 //post
 const addPokemon = body => axios.post(`${baseURL}/addPokemon`, body).then(displayPokemon).catch(errCallback)
@@ -26,7 +38,7 @@ const getAllPokemon = () => {
 function submitHandler(e) {
   e.preventDefault()
 
-//   let id = document.querySelector('#id')
+
   let name = document.querySelector('#name')
   let picture = document.querySelector('#picture')
   let quantity = document.querySelector('#quantity')
@@ -35,7 +47,7 @@ function submitHandler(e) {
 
 
   let bodyObj = {
-    //   id: id.value,
+
       name: name.value,
       picture: picture.value,
       quantity: quantity.value
@@ -66,16 +78,16 @@ const createPokemonCard = (pokemon) => {
     pokemonCard.classList.add('pokemon-card')
 
     pokemonCard.innerHTML = `
+    <br>
     <img src=${pokemon.picture}  id="${pokemon.id}"/>
     <p>${pokemon.name}</p>
     <p>${pokemon.id}</p>
     <p id "quantity"> Quantity is ${pokemon.quantity}</p>
-    <button onclick="updateQuantity(${pokemon.id}, 'quantity')">Add One Pokemon to Quantity</button>
 
+  
+    <button onclick="updateQuantity(${pokemon.id}, 'quantity'); toggleClass()">Add One Pokemon to Quantity</button>
 
-
-    
-       
+<br>     
     `
 pokemoncontainer.appendChild(pokemonCard)
 }
@@ -87,18 +99,29 @@ form.addEventListener('submit', submitHandler)
 
 
 
+// const image = document.querySelector('.grayscale');
+
+
+// function toggleClass() {
+//   if (image.classList.contains('grayscale')) {
+//     image.classList.remove('grayscale');
+//   } 
+// }
 
 
 
-// function colorMe() {
+// function colorMe(id) {
 
-//   var element = document.getElementById(`${pokemon.id}`);
+//   var element = document.getElementById(`#${id}`);
 //   element.classList.toggle("grayscale");
 //   console.log('click');
 
-// }
-// var pictureClick = document.querySelector(`#${pokemon.id}`);
-// pictureClick.addEventListener("click", colorMe);
+
+// var pictureClick = document.querySelector(`#${id}`);
+
+//   pictureClick.addEventListener("click", colorMe)
+
+// };
 
 
 

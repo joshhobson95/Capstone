@@ -28,14 +28,15 @@ module.exports = {
 
     addPokemon: (req, res) => {
 
-        const {name, picture, quantity} = req.body
+        const {name, picture, quantity, game} = req.body
 
 
         let newPokemonObject = {
             name,
             picture,
             quantity,
-            id: pokemonId
+            id: pokemonId,
+           
 
         }
 
@@ -46,6 +47,15 @@ module.exports = {
 
         res.status(200).send(pokemon)
 
+    },
+
+    randomPokemon: (req, res) => {
+     
+        let randomIndex = Math.floor(Math.random() * pokemon.length)
+        let randomPokemon = pokemon[randomIndex]['name']
+        
+
+        res.status(200).send(randomPokemon)
     }
 
  
