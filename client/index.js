@@ -34,6 +34,39 @@ const getAllPokemon = () => {
             console.log(err)
         })
 }
+const displayPokemon = (arr) => {
+    for(let i =0; i < arr.length; i++){
+        createPokemonCard(arr[i])
+    }
+}
+////////// creates a card for each pokemon
+
+///actual function to add the innerHTML
+const createPokemonCard = (pokemon) => {
+    const pokemonCard = document.createElement('section')
+    pokemonCard.classList.add('pokemon-card')
+    
+    pokemonCard.innerHTML = `
+    <br>
+    <img src=${pokemon.picture}  id="${pokemon.id}"/>
+    <p>${pokemon.name}</p>
+    <p>${pokemon.id}</p>
+    <p id "quantity"> Quantity is ${pokemon.quantity}</p>
+    
+    
+    <button onclick="updateQuantity(${pokemon.id}, 'quantity'); toggleClass()">Add One Pokemon to Quantity</button>
+    
+    <br>     
+    `
+    pokemoncontainer.appendChild(pokemonCard)
+}
+
+
+form.addEventListener('submit', submitHandler)
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 ////////////////////////////////// submit handler
 function submitHandler(e) {
   e.preventDefault()
@@ -65,39 +98,6 @@ function submitHandler(e) {
 }
 
 //////////////////////////
-const displayPokemon = (arr) => {
-    for(let i =0; i < arr.length; i++){
-        createPokemonCard(arr[i])
-    }
-}
-////////// creates a card for each pokemon
-
-///actual function to add the innerHTML
-const createPokemonCard = (pokemon) => {
-    const pokemonCard = document.createElement('section')
-    pokemonCard.classList.add('pokemon-card')
-
-    pokemonCard.innerHTML = `
-    <br>
-    <img src=${pokemon.picture}  id="${pokemon.id}"/>
-    <p>${pokemon.name}</p>
-    <p>${pokemon.id}</p>
-    <p id "quantity"> Quantity is ${pokemon.quantity}</p>
-
-  
-    <button onclick="updateQuantity(${pokemon.id}, 'quantity'); toggleClass()">Add One Pokemon to Quantity</button>
-
-<br>     
-    `
-pokemoncontainer.appendChild(pokemonCard)
-}
-
-
-form.addEventListener('submit', submitHandler)
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 // const image = document.querySelector('.grayscale');
 
