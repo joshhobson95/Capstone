@@ -48,13 +48,13 @@ const createPokemonCard = (pokemon) => {
     
     pokemonCard.innerHTML = `
     <br>
-    <img src=${pokemon.picture}  id="${pokemon.id}"/>
+    <img src=${pokemon.picture}  id="${pokemon.id}" class="pokemonpicture"/>
     <p>${pokemon.name}</p>
     <p>${pokemon.id}</p>
     <p id "quantity"> Quantity is ${pokemon.quantity}</p>
     
     
-    <button onclick="updateQuantity(${pokemon.id}, 'quantity');">Add One Pokemon to Quantity</button>
+    <button class="addPB" onclick="updateQuantity(${pokemon.id}, 'quantity');">Add </button>
     <script>
     function colorMe() {
 
