@@ -49,28 +49,17 @@ const createPokemonCard = (pokemon) => {
     pokemonCard.innerHTML = `
     <br>
     <img src=${pokemon.picture}  id="${pokemon.id}" class="pokemonpicture"/>
-    <p>${pokemon.name}</p>
-    <p>${pokemon.id}</p>
-    <p id "quantity"> Quantity is ${pokemon.quantity}</p>
+    <p id "quantity"> You have ${pokemon.quantity} shiny ${pokemon.name} </p>
+    
+
     
     
     <button class="addPB" onclick="updateQuantity(${pokemon.id}, 'quantity');">Add </button>
     <script>
-    function colorMe() {
-
-      var element = document.getElementById("1");
-      element.classList.toggle("pokemoncontainer");
-      console.log('click');
-    
-    
-    var pictureClick = document.querySelector("#1");
-    
-      pictureClick.addEventListener("click", colorMe)
-    
-    };
+ 
     </script>
 
-  
+  <br>
 
 <select name="games" id="s1">
 

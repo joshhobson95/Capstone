@@ -8,37 +8,56 @@
     font-size: 28pt;
     justify-content: center;
     align-items: center;
+
 }
 
 
 body{
     color: antiquewhite;
 background-color: rgb(58, 58, 58);
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 
+#bountybox{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 7%;
+
+}
 #addNew{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    font-family: Bakbak One;
-    font-size: 16pt;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+ 
+
+}
+.adding{
+  display: flex;
+
+  font-family: Bakbak One;
+  flex-direction: column;
+
 }
 
 
 .pokemonpicture{
 
-    filter: grayscale(100%);
+    filter: grayscale(1%);
 }
 #pokemoncontainer{
     display: flex;
+    text-transform: capitalize;
     align-content: center;
     gap: 25px 25px;
     flex-wrap: wrap;
    font-family:  Bakbak One;
    font-size:  12pt;
-    
+    padding-left: 100px;
     margin: 4%;
 }
+
 /* /// */
 .addPB{
     width: 100px;
@@ -50,7 +69,9 @@ background-color: rgb(58, 58, 58);
     text-transform: uppercase;
     cursor: pointer;
     font-size: 10px;
+    font-family: Bakbak One;
     position: relative;
+    
   }
   
   .addPB::before,.addPB::after{
@@ -58,7 +79,7 @@ background-color: rgb(58, 58, 58);
     position: absolute;
     width: 14px;
     height: 4px;
-    background: #353b48;
+    background: rgb(58, 58, 58);
     transform: skewX(50deg);
     transition: .4s linear;
   }
@@ -74,10 +95,10 @@ background-color: rgb(58, 58, 58);
   }
   
   .addPB:hover::before{
-    left: 80%;
+    left: 100%;
   }
   
   .addPB:hover::after{
-    right: 80%;
+    right: 100%;
   }
   /* /// */
