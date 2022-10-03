@@ -78,7 +78,7 @@ justify-content: center;
     content: "";
     position: absolute;
     width: 14px;
-    height: 4px;
+    height: 6px;
     background: rgb(58, 58, 58);
     transform: skewX(50deg);
     transition: .4s linear;

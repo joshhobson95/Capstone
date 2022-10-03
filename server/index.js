@@ -7,14 +7,15 @@ app.use(express.json())
 app.use(cors())
 
 
-//add each function to this destructing
+
 const { getPokemon, addPokemon, updateQuantity, randomPokemon} = require('./controller')
 
 app.get('/getPokemon', getPokemon);
 app.post('/addPokemon', addPokemon);
 
 app.put('/updateQuantity/:id', updateQuantity);
-app.get('/randomPokemon', randomPokemon)
+app.get('/randomPokemon', randomPokemon);
+
 
 
 

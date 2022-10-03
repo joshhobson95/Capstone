@@ -23,8 +23,8 @@ module.exports = {
 
     
     },
-    
-    
+ 
+
 
     addPokemon: (req, res) => {
 
@@ -35,6 +35,7 @@ module.exports = {
             name,
             picture,
             quantity,
+            
             id: pokemonId,
            
 
