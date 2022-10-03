@@ -42,9 +42,9 @@ justify-content: center;
 }
 
 
-.pokemonpicture{
+.grayscale{
 
-    filter: grayscale(1%);
+    filter: grayscale(100%);
 }
 #pokemoncontainer{
     display: flex;

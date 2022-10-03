@@ -24,11 +24,29 @@ const addPokemon = body => axios.post(`${baseURL}/addPokemon`, body).then(displa
 const updateQuantity = (id, type) => axios.put(`${baseURL}/updateQuantity/${id}`, {type}).then(displayPokemon).catch(errCallback)
 
 //get
+function colorMe() {
+ 
+  let pokemonpictures = document.querySelectorAll(".pokemonpicture");
+  for( let i = 0; i < pokemonpictures.length; i++ ){
+    pokemonpictures[i].addEventListener('click', () =>{
+       pokemonpictures[i].classList.toggle("grayscale")
+       console.log('click')
+    })
+  }
+}
+
+
+
+
+
+
+
 const getAllPokemon = () => {
     axios.get(`${baseURL}/getPokemon`)
         .then((res) => {
             console.log(res.data)
             displayPokemon(res.data)
+            colorMe()
         })
         .catch((err) => {
             console.log(err)
@@ -48,13 +66,13 @@ const createPokemonCard = (pokemon) => {
     
     pokemonCard.innerHTML = `
     <br>
-    <img src=${pokemon.picture}  id="${pokemon.id}" class="pokemonpicture"/>
+    <img src=${pokemon.picture}  id="a${pokemon.id}" class="pokemonpicture grayscale" />
     <p id "quantity"> You have ${pokemon.quantity} shiny ${pokemon.name} </p>
     
 
     
     
-    <button class="addPB" onclick="updateQuantity(${pokemon.id}, 'quantity');">Add </button>
+    <button  class="addPB" onclick="updateQuantity(${pokemon.id}, 'quantity');">Add </button>
     <script>
  
     </script>
@@ -128,8 +146,13 @@ const createPokemonCard = (pokemon) => {
 
     
     <br>     
+
     `
+  
+
     pokemoncontainer.appendChild(pokemonCard)
+
+   
 }
 
 
@@ -164,96 +187,6 @@ function submitHandler(e) {
 }
 
 //////////////////////////
-
-function colorMe() {
-
-  var element = document.getElementById("1");
-  element.classList.toggle("pokemoncontainer");
-  console.log('click');
-
-
-var pictureClick = document.querySelector("#1");
-
-  pictureClick.addEventListener("click", colorMe)
-
-};
-
-
-// const getAllPokemon2 = () => {
-//   axios.get(`${baseURL}/getPokemon`)
-//       .then((res) => {
-//           console.log(res.data)
-//           displayPokemon2(res.data)
-//       })
-//       .catch((err) => {
-//           console.log(err)
-//       })
-
-
-
-// data.forEach(i =>{
-//   let x = document.getElementById(`${i.id}`);
-//   let y = document.getElementById(`${i.id}`);
-//   let z = document.getElementById(`${i.id}`);
-//   let b = document.getElementById(`${i.id}+btn`)
-//     x.onclick =changeBackground=()=>{
-//       y.classList.toggle("togglebackground");
-//         if(z.style.display==="none"){
-//           z.style.display="block"
-//         } else {
-//           z.style.display="none";
-//         }
-//     }
-//     b.onclick=memorize=()=>{
-//       y.style.display="none";
-//     }
-
-
-
-// })
-
-// }
-
-
-
-// const image = document.querySelector('.grayscale');
-
-
-// function toggleClass() {
-//   if (image.classList.contains('grayscale')) {
-//     image.classList.remove('grayscale');
-//   } 
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 getAllPokemon()
