@@ -37,12 +37,9 @@ function colorMe() {
   }
 }
 ////////////////////////////////////////////////////////////////////////
-function click(pokemon) {
-let quantity = (`${pokemon.quantity}`)
-  if ( quantity > 0 ){
-  document.getElementById(`a${pokemon.id}`).click()
-  }
-}
+
+
+
 
 
 
@@ -55,8 +52,14 @@ const getAllPokemon = () => {
         .then((res) => {
             console.log(res.data)
             displayPokemon(res.data)
-            click(res.data)
+            
             colorMe()
+
+            
+
+            
+            
+            
             
         })
         .catch((err) => {
@@ -74,38 +77,21 @@ const displayPokemon = (arr) => {
 const createPokemonCard = (pokemon) => {
     const pokemonCard = document.createElement('section')
     pokemonCard.classList.add('pokemon-card')
+    let pokemonclass = "pokemonpicture"
+    if (pokemon.quantity === 0){
+      pokemonclass += " grayscale"
+
+    }
     
     pokemonCard.innerHTML = `
     <br>
-    <img src=${pokemon.picture}  id="a${pokemon.id}" class="pokemonpicture grayscale" />
-
-
-
-    <p id "quantity"> You have ${pokemon.quantity} shiny ${pokemon.name} </p>
-    
-
-    
-    
+    <img src=${pokemon.picture}  id="a${pokemon.id}" class="${pokemonclass}"/>
+    <p id "quantity"> You have ${pokemon.quantity} shiny ${pokemon.name} </p> 
     <button  class="addPB" onclick="updateQuantity(${pokemon.id}, 'quantity');">Add </button>
-   
-
-  
- 
- 
   <br> </br>
-
-
-  
-
     `
-  
-
-    pokemoncontainer.appendChild(pokemonCard)
-
-   
+    pokemoncontainer.appendChild(pokemonCard)  
 }
-
-
 form.addEventListener('submit', submitHandler)
 
 
@@ -138,4 +124,3 @@ function submitHandler(e) {
 //////////////////////////
 
 getAllPokemon()
-
