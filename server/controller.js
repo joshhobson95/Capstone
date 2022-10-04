@@ -25,10 +25,9 @@ module.exports = {
     },
  
 
-
     addPokemon: (req, res) => {
 
-        const {name, picture, quantity, game} = req.body
+        const {name, picture, quantity} = req.body
 
 
         let newPokemonObject = {
