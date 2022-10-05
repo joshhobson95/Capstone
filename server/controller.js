@@ -31,11 +31,11 @@ module.exports = {
 
 
         let newPokemonObject = {
+            id: pokemonId,
             name,
             picture,
             quantity,
             
-            id: pokemonId,
            
 
         }
