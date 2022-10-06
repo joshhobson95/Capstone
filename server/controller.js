@@ -1,4 +1,6 @@
+
 let pokemon = require('./db.json')
+
 let pokemonId = 136
 
 module.exports = {
